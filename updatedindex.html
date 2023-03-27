@@ -69,6 +69,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
 
+import java.util.Scanner;
+
 $(document).ready(() => {
   // Initialize variables
   let deck = [];
@@ -172,23 +174,46 @@ $(document).ready(() => {
       $("#result").text("Computer wins!");
       gameOver = true;
 
-      while True:
-    bet = input("Place your bet: ")  //ask the player to place a bet
-    bet = int(bet)   //convert the input to an integer
-    if bet > balance:
-        print("Insufficient balance.")
-        continue  //ask the player to place a valid bet
-    
-    //deal the cards and play the round
 
-    
-    if player_wins:
-        balance += bet   // add the bet amount to the player's balance
-        print("You won! Your balance is now", balance)
-    else:
-        balance -= bet   // subtract the bet amount from the player's balance
-        print("You lost. Your balance is now", balance)
-    
-    if balance <= 0:
-        print("Game over.")
-        break   // end the game if the player runs out of balance
+public class CardGame {
+    public static void main(String[] args) {
+        int balance = 100; // initial balance
+        Scanner scanner = new Scanner(System.in);
+        
+        while (true) {
+            System.out.print("Place your bet: ");
+            String betString = scanner.nextLine();
+            
+            int bet;
+            try {
+                bet = Integer.parseInt(betString);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+                continue;
+            }
+            
+            if (bet > balance) {
+                System.out.println("Insufficient balance.");
+                continue;
+            }
+            
+            // deal the cards and play the round
+            boolean playerWins = true; // assume the player wins
+            
+            if (playerWins) {
+                balance += bet;
+                System.out.println("You won! Your balance is now " + balance);
+            } else {
+                balance -= bet;
+                System.out.println("You lost. Your balance is now " + balance);
+            }
+            
+            if (balance <= 0) {
+                System.out.println("Game over.");
+                break;
+            }
+        }
+        
+        scanner.close();
+    }
+}
