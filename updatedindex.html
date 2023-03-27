@@ -77,6 +77,8 @@ $(document).ready(() => {
   let playerScore = 0;
   let computerScore = 0;
   let gameOver = false;
+  let playerChips = 100; // Starting chips
+  let bet = 10; // Default bet
 
   // Create deck of cards
   const createDeck = () => {
@@ -169,3 +171,24 @@ $(document).ready(() => {
     } else {
       $("#result").text("Computer wins!");
       gameOver = true;
+
+      while True:
+    bet = input("Place your bet: ")  //ask the player to place a bet
+    bet = int(bet)   //convert the input to an integer
+    if bet > balance:
+        print("Insufficient balance.")
+        continue  //ask the player to place a valid bet
+    
+    //deal the cards and play the round
+
+    
+    if player_wins:
+        balance += bet   // add the bet amount to the player's balance
+        print("You won! Your balance is now", balance)
+    else:
+        balance -= bet   // subtract the bet amount from the player's balance
+        print("You lost. Your balance is now", balance)
+    
+    if balance <= 0:
+        print("Game over.")
+        break   // end the game if the player runs out of balance
