@@ -8,16 +8,23 @@ $(document).ready(() => {
   let gameOver = false;
 
   // Create deck of cards
-  const createDeck = () => {
-    const suits = ["hearts", "diamonds", "clubs", "spades"];
-    const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-    for (const suit of suits) {
-      for (const value of values) {
-        const card = { value, suit };
-        deck.push(card);
-      }
+  const suits = ["hearts", "diamonds", "clubs", "spades"];
+const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+
+function createDeck() {
+  let deck = [];
+  for (let suit in suits) {
+    for (let value in values) {
+      let card = {value: values[value], suit: suits[suit]};
+      card.image = `cards/${card.value}_of_${card.suit}.png`;
+      deck.push(card);
     }
-  };
+  }
+  return deck;
+}
+
+let deck = createDeck();
+
 
   // Shuffle deck of cards
   const shuffleDeck = () => {
