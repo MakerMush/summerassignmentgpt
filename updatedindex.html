@@ -176,9 +176,9 @@ $(document).ready(() => {
 
 
 let balance = 100; // initial balance
-
-for (let i = 0; i < args.length; i++) {
-  let betString = args[i];
+/*
+for (let i = 0; i < 10; i++) {
+  let betString = bet[i];
   
   let bet;
   try {
@@ -208,5 +208,32 @@ for (let i = 0; i < args.length; i++) {
     console.log("Game over.");
     break;
   }
+} */
+
+});
+
+
+$("#deal-button").click(() => {
+  dealCards();
+  console.log("deal");
+});
+
+$("#hit-button").click(() => {
+  playerCards.push(deck.pop());
+  renderCards();
+  console.log("hit");
+});
+
+function stand() {
+  playerTurn = false;
+  while (computerCards.getValue() < 17) {
+    computerCards.addCard(deck.dealCard());
+  }
+  endRound();
 }
-}
+
+$("#stand-button").click(() => {
+  stand();
+  console.log("stand");
+});
+</script>
